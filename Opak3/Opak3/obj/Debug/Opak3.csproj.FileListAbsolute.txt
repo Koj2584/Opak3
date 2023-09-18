@@ -1,0 +1,11 @@
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\bin\Debug\Opak3.exe.config
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\bin\Debug\Opak3.exe
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\bin\Debug\Opak3.pdb
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.csproj.AssemblyReference.cache
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.csproj.SuggestedBindingRedirects.cache
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.Properties.Resources.resources
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.csproj.GenerateResource.cache
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.csproj.CoreCompileInputs.cache
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.exe
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.pdb
+C:\Users\vomelaj.05\source\repos\Opak3\Opak3\obj\Debug\Opak3.Form1.resources
