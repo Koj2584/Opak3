@@ -87,14 +87,21 @@ namespace Opak3
             List<string> jmena = new List<string>();
             List<int> znamka = new List<int>();
             List<string> rc = new List<string>();
-            while (!sr.EndOfStream)
+            try
             {
-                string r = sr.ReadLine();
-                listBox1.Items.Add(r);
-                string[] s = r.Split(';');
-                jmena.Add(s[0]);
-                znamka.Add(int.Parse(s[1]));
-                rc.Add(s[2]);
+                while (!sr.EndOfStream)
+                {
+                    string r = sr.ReadLine();
+                    listBox1.Items.Add(r);
+                    string[] s = r.Split(';');
+                    jmena.Add(s[0]);
+                    znamka.Add(int.Parse(s[1]));
+                    rc.Add(s[2]);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Chyba v souboru!!");
             }
             sr.Close();
 
@@ -153,6 +160,114 @@ namespace Opak3
                 listBox3.Items.Add(r);
             }
             sr.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            string file = "";
+            while (file == "")
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    file = openFileDialog.FileName;
+                }
+            }
+
+            StreamReader sr = new StreamReader(file);
+            FileStream fs = new FileStream("cisla.dat", FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+
+            
+            while (!sr.EndOfStream)
+            {
+                string r = sr.ReadLine();
+                listBox1.Items.Add(r);
+                string[] s = r.Split(';');
+                int max = int.MinValue;
+                foreach(string s2 in s)
+                {
+                    if(s2.Length > max)
+                        max = s2.Length;
+                }
+                bw.Write(Math.Round((double)max/10,1));
+            }
+            bw.Close();
+            sr.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("cisla.dat", FileMode.Open);
+            BinaryReader bw = new BinaryReader(fs);
+
+            listBox4.Items.Clear();
+            while(bw.BaseStream.Position < bw.BaseStream.Length)
+            {
+                listBox4.Items.Add(bw.ReadDouble());
+            }
+            bw.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("cisla.dat", FileMode.Open);
+            BinaryReader br = new BinaryReader(fs);
+            List<double> l = new List<double>();
+            List<double> l2 = new List<double>();
+
+            while (br.BaseStream.Position < br.BaseStream.Length)
+            {
+                l.Add(br.ReadDouble());
+            }
+            br.Close();
+
+            foreach(double d in l)
+            {
+                if (d < 1)
+                    l2.Add(d * 10);
+                else
+                    l2.Add(d);
+            }
+
+            fs = new FileStream("cisla.dat", FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+
+            foreach(double d in l2)
+            {
+                bw.Write(d);
+            }
+            bw.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("cisla.dat", FileMode.Open);
+            BinaryReader br = new BinaryReader(fs);
+            List<double> l = new List<double>();
+            double soucet = 0, pocet = 0; ;
+
+            while (br.BaseStream.Position < br.BaseStream.Length)
+            {
+                l.Add(br.ReadDouble());
+            }
+            br.Close();
+
+            foreach (double d in l)
+            {
+                if (d > 2)
+                {
+                    soucet+=d;
+                    pocet++;
+                }
+            }
+
+            fs = new FileStream("cisla.dat", FileMode.Append);
+            BinaryWriter bw = new BinaryWriter(fs);
+
+            bw.Write(soucet/pocet);
+            bw.Close();
         }
     }
 }
